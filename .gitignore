@@ -1,0 +1,44 @@
+# Dependency & build folders (di-generate ulang via composer install / npm install)
+/vendor
+/node_modules
+/public/hot
+/public/build
+/public/storage
+
+# File environment (berisi kredensial database, jangan pernah di-push!)
+.env
+.env.backup
+.env.production
+
+# Cache & storage lokal
+/storage/*.key
+/storage/pail
+/storage/logs/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+!/storage/framework/cache/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/views/.gitignore
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
+# Testing & IDE
+/.phpunit.cache
+Homestead.json
+Homestead.yaml
+auth.json
+.phpunit.result.cache
+
+# Editor
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
