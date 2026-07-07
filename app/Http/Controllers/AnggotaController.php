@@ -21,13 +21,13 @@ class AnggotaController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('anggota.index', compact('anggota', 'keyword'));
+        return view('admin.anggota.index', compact('anggota', 'keyword'));
     }
 
     /** Form tambah anggota baru (dibuat oleh admin) */
     public function create()
     {
-        return view('anggota.create');
+        return view('admin.anggota.create');
     }
 
     /** Simpan anggota baru */
@@ -46,7 +46,7 @@ class AnggotaController extends Controller
 
         Anggota::create($data);
 
-        return redirect()->route('anggota.index')->with('success', 'Anggota berhasil ditambahkan.');
+        return redirect()->route('admin.anggota.index')->with('success', 'Anggota berhasil ditambahkan.');
     }
 
     /** Form edit anggota */
@@ -55,7 +55,7 @@ class AnggotaController extends Controller
         // Catatan: Laravel route-model-binding otomatis memakai nama variabel
         // sebagai parameter. Karena nama model "Anggota", Laravel akan
         // otomatis mem-bind ke $anggota jika parameter route diberi nama {anggota}.
-        return view('anggota.edit', ['anggota' => $anggota]);
+        return view('admin.anggota.edit', ['anggota' => $anggota]);
     }
 
     /** Update data anggota */
@@ -78,7 +78,7 @@ class AnggotaController extends Controller
 
         $anggota->update($data);
 
-        return redirect()->route('anggota.index')->with('success', 'Data anggota berhasil diperbarui.');
+        return redirect()->route('admin.anggota.index')->with('success', 'Data anggota berhasil diperbarui.');
     }
 
     /** Hapus anggota */
@@ -86,6 +86,6 @@ class AnggotaController extends Controller
     {
         $anggota->delete();
 
-        return redirect()->route('anggota.index')->with('success', 'Anggota berhasil dihapus.');
+        return redirect()->route('admin.anggota.index')->with('success', 'Anggota berhasil dihapus.');
     }
 }

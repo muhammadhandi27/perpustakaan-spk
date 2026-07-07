@@ -22,7 +22,7 @@ class PeminjamanController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('peminjaman.index', compact('peminjaman', 'status'));
+        return view('admin.peminjaman.index', compact('peminjaman', 'status'));
     }
 
     /** [ADMIN] Form buat transaksi peminjaman baru secara manual */
@@ -31,7 +31,7 @@ class PeminjamanController extends Controller
         $anggotaList = \App\Models\Anggota::where('role', 'anggota')->orderBy('nama')->get();
         $bukuList    = Buku::where('stok', '>', 0)->orderBy('judul')->get();
 
-        return view('peminjaman.create', compact('anggotaList', 'bukuList'));
+        return view('admin.peminjaman.create', compact('anggotaList', 'bukuList'));
     }
 
     /** [ADMIN] Simpan transaksi peminjaman baru */
@@ -45,7 +45,7 @@ class PeminjamanController extends Controller
 
         $this->prosesPeminjaman($data['id_anggota'], $data['id_buku'], $data['jumlah_buku']);
 
-        return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil dicatat.');
+        return redirect()->route('admin.peminjaman.index')->with('success', 'Peminjaman berhasil dicatat.');
     }
 
     /** [ADMIN] Tandai peminjaman sebagai dikembalikan */
@@ -91,7 +91,7 @@ class PeminjamanController extends Controller
             ->orderByDesc('tanggal_pinjam')
             ->paginate(10);
 
-        return view('peminjaman.riwayat', compact('riwayat'));
+        return view('member.riwayat', compact('riwayat'));
     }
 
     /**

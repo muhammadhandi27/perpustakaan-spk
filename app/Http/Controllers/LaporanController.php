@@ -21,7 +21,7 @@ class LaporanController extends Controller
             ->orderBy('ranking')
             ->get();
 
-        return view('laporan.index', compact('rekomendasi'));
+        return view('admin.laporan.index', compact('rekomendasi'));
     }
 
     /** Export laporan hasil SAW ke file PDF */
@@ -31,7 +31,7 @@ class LaporanController extends Controller
             ->orderBy('ranking')
             ->get();
 
-        $pdf = Pdf::loadView('laporan.pdf', compact('rekomendasi'))
+        $pdf = Pdf::loadView('admin.laporan.pdf', compact('rekomendasi'))
             ->setPaper('a4', 'portrait');
 
         return $pdf->download('laporan-rekomendasi-saw-' . now()->format('Y-m-d') . '.pdf');

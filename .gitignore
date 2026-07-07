@@ -9,6 +9,7 @@
 .env
 .env.backup
 .env.production
+*.blade.old.php
 
 # Cache & storage lokal
 /storage/*.key

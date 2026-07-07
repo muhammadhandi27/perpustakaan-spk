@@ -18,7 +18,7 @@ class KriteriaController extends Controller
         $kriteria = Kriteria::orderBy('kode_kriteria')->get();
         $totalBobot = $kriteria->sum('bobot');
 
-        return view('kriteria.index', compact('kriteria', 'totalBobot'));
+        return view('admin.kriteria.index', compact('kriteria', 'totalBobot'));
     }
 
     /** Update bobot satu kriteria */

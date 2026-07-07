@@ -14,7 +14,7 @@
         <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-3">
             <i class="fa-solid fa-book text-white text-lg"></i>
         </div>
-        <h1 class="text-xl font-bold text-slate-800">Perpustakaan SPK</h1>
+        <h1 class="text-xl font-bold text-slate-800">SIPER-SAW</h1>
         <p class="text-sm text-slate-500">Masuk untuk melanjutkan</p>
     </div>
 
@@ -60,7 +60,7 @@
     </div>
 
     <p class="text-center text-xs text-slate-400 mt-6">
-        Demo akun — Admin: <code>admin / admin123</code> &nbsp;|&nbsp; Anggota: <code>rina / anggota123</code>
+        Demo akun — Admin: <code>admin / admin123</code> &nbsp;|&nbsp; Anggota: <code>handi / handi123</code>
     </p>
 </div>
 

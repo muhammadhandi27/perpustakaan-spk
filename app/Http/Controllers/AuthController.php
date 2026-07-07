@@ -80,7 +80,7 @@ class AuthController extends Controller
 
         Auth::login($anggota);
 
-        return redirect()->route('anggota.dashboard');
+        return redirect()->route('admin.anggota.dashboard');
     }
 
     /**

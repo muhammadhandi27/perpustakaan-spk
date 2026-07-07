@@ -155,6 +155,8 @@ class SAWController extends Controller
                 'judul'            => $buku->judul ?? '-',
                 'penulis'          => $buku->penulis ?? '-',
                 'kategori'         => $buku->kategori ?? '-',
+                'rating'           => $buku->rating ?? 0,
+                'stok'             => $buku->stok ?? 0,
                 'bobot_preferensi' => $item['v_i'],
                 'detail_normalisasi' => $item['normalisasi'],
             ];
@@ -211,8 +213,10 @@ class SAWController extends Controller
                     continue;
                 }
 
-                // updateOrCreate: insert baru jika belum ada, update jika sudah ada
-                PenilaianBuku::updateOrCreate(
+                // Memakai Query Builder (bukan model Eloquent) karena tabel ini
+                // punya composite primary key (id_buku + id_kriteria) yang tidak
+                // didukung baik oleh updateOrCreate() Eloquent biasa.
+                DB::table('penilaian_buku')->updateOrInsert(
                     [
                         'id_buku'     => $buku->id_buku,
                         'id_kriteria' => $kriteriaMap[$kode],
@@ -232,11 +236,6 @@ class SAWController extends Controller
     private function simpanHasilRekomendasi(array $hasilPreferensi): void
     {
         DB::transaction(function () use ($hasilPreferensi) {
-            // PENTING: gunakan delete(), BUKAN truncate().
-            // TRUNCATE adalah perintah DDL yang melakukan implicit commit
-            // di MySQL, sehingga akan merusak transaksi yang sedang berjalan
-            // dan memicu error "There is no active transaction".
-            // delete() adalah perintah DML biasa sehingga aman di dalam transaksi.
             RekomendasiBuku::query()->delete();
 
             foreach ($hasilPreferensi as $item) {
@@ -270,6 +269,7 @@ class SAWController extends Controller
                     'penulis'          => $item->buku->penulis ?? '-',
                     'kategori'         => $item->buku->kategori ?? '-',
                     'stok'             => $item->buku->stok ?? 0,
+                    'rating'           => $item->buku->rating ?? 0,
                     'bobot_preferensi' => $item->bobot_preferensi,
                 ];
             });
